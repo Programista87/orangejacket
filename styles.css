@@ -1,0 +1,211 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial Nova Light', Arial, sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: relative; /* Ustawiamy pozycję relative, aby można było zastosować pseudoelement */
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 5%; /* Pozycja początku border-bottom, 10% od lewej krawędzi */
+  width: 90%; /* Szerokość border-bottom, 80% szerokości nagłówka */
+  height: 2px; /* Grubość border-bottom */
+  background-color: #F94F0B; /* Kolor border-bottom */
+}
+
+img {
+  height: 80px;
+  width: 90%;
+  
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-right: 60px;
+}
+
+nav ul li {
+  display: inline;
+  margin-left: 20px;
+}
+
+nav ul li a {
+  text-decoration: none; 
+  color: black; 
+}
+
+nav ul li:first-child {
+  margin-left: 0;
+}
+
+main {
+  padding: 20px;
+ 
+
+}
+
+main img {
+  max-width: 100%;
+  height: 100%;
+}
+
+.paragraph-container {
+  flex: 1;
+}
+
+.content p {
+  font-family: 'Arial Nova Light', Arial, sans-serif;
+  text-align: justify;
+  width: 100%;
+  margin-bottom: 30px; /* Dodaj odstęp w pionie między paragrafami */
+  margin-top: 5%;
+
+}
+
+.footer {
+  background-color: #F94F0B;
+  color: white;
+  text-align: center;
+  padding: 2px;
+  margin: 20px;
+}
+
+.container {
+  display: flex;
+}
+
+.content,
+.image {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+}
+
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.portfolio {
+  padding: 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 kolumny */
+  grid-gap: 20px; /* odstęp między elementami */
+}
+
+.grid-item img {
+  width: 100%;
+  height: auto;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Trzy kolumny */
+  gap: 20px; /* Odstęp między elementami w siatce */
+}
+
+.grid-item {
+  border: 1px solid #ccc; /* Dodaj ramkę do każdego elementu w siatce */
+}
+
+.contact-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Wysokość równa wysokości ekranu */
+  padding: 20px;
+}
+
+.contact-container h2 {
+  margin-bottom: 20px;
+}
+
+.contact-container ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.contact-container li {
+  margin-bottom: 10px;
+}
+.contact-container a {
+  color: #F94F0B;
+}
+
+/* Media queries dla responsywności na urządzeniach mobilnych */
+@media only screen and (max-width: 768px) {
+  header {
+    flex-direction: column; /* Układ pionowy dla nagłówka */
+    align-items: center; /* Wyśrodkuj elementy w pionie */
+  }
+
+  nav ul {
+    margin-right: 0; /* Usuń margines z prawej strony */
+    margin-top: 20px; /* Dodaj odstęp z góry */
+  }
+
+  nav ul li {
+    margin-left: 10px; /* Mniejszy margines dla pozycji w nawigacji */
+  }
+
+  .footer {
+    margin: 0; /* Usuń margines z stopki */
+    padding: 10px; /* Dodaj wewnętrzny odstęp */
+    text-align: center; /* Wyśrodkuj tekst */
+  }
+
+  main {
+    padding: 10px; /* Mniejszy padding dla treści głównej */
+  }
+  
+  content,
+  .image {
+    padding-left: 0; /* Usuń lewy margines dla treści i obrazu */
+  }
+
+  img {
+    max-width: 100%; /* Zmniejsz szerokość obrazu do maksymalnie dostępnej */
+    max-height: 20%; /* Ogranicz wysokość obrazu do maksymalnie dostępnej */
+    height: auto; /* Zachowaj proporcje */
+}
+
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr); /* Jedna kolumna dla siatki w portfolio */
+  }
+
+  .grid-item {
+    border: none; /* Usuń ramki dla elementów w siatce */
+  }
+
+  .contact-container {
+    padding: 10px; /* Mniejszy padding dla sekcji kontaktowej */
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dwie kolumny dla siatki w portfolio na urządzeniach mobilnych */
+    grid-gap: 10px; /* Odstęp między elementami siatki */
+  }
+
+  .grid-item img {
+    width: 100%;
+    height: auto;
+  }
+}

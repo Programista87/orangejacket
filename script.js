@@ -1,0 +1,100 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const contentPlaceholder = document.getElementById('content-placeholder');
+    const links = document.querySelectorAll('nav ul li a');
+
+    // Funkcja do obsługi kliknięcia w link nawigacyjny
+    function handleNavigation(event) {
+        event.preventDefault(); // Zapobiegaj domyślnej akcji przeglądarki
+
+        const pageId = this.getAttribute('href').substr(1); // Pobierz identyfikator podstrony z atrybutu href
+        let content = '';
+
+        // Ustawienie odpowiedniej treści w zależności od identyfikatora podstrony
+        switch (pageId) {
+            case 'about':
+                content = `
+                    <main>
+                        <div class="container">
+                            <div class="content" style="font-family: 'Arial Nova Light', Arial, sans-serif; text-align: justify; font-size: 1.2em">
+                                <p>Orange Jacket is a dynamically developing engineering company based in Krakow, specializing in the design, aerodynamic calculations, and structural calculations of wind turbines. Our activity focuses on providing comprehensive engineering services, including the design of machinery and equipment, with advanced design and calculations for marine vessel onboard devices.</p>
+                                <p>Within our offerings, Orange Jacket also possesses specialized computational competences, covering the design and calculations of pressure devices in accordance with the Pressure Equipment Directive. Our engineers are capable of conducting calculations and designs for biomass boilers and gas boilers, utilizing our own innovative computational methods for this purpose.</p>
+                                <p>The Orange Jacket team consists of highly qualified professionals who have competences in the design of aircraft engines and gas turbines. Our firm is also known for its strong capability in the calculations of composite structures. Thanks to this, we are able to undertake the most demanding engineering projects, offering solutions at the highest technological level.</p>
+                                <p>At Orange Jacket, we combine a passion for innovation with a deep understanding of technology to provide our clients not just with finished products, but also with support at every stage of the project. Our interdisciplinary team is ready to face the challenges of the modern world of engineering, ensuring services of the highest standard.</p>
+                            </div>
+                            <div class="image">
+                                <img src="image/1.jpg" alt="Image" style="max-width: 100%; height: 100%;">
+                            </div>
+                        </div>
+                    </main>
+                `;
+                break;
+            case 'portfolio':
+                content = `
+                    <div class="grid-container">
+                        <!-- Dynamically generated image elements will go here -->
+                    </div>
+                `;
+                break;
+            case 'contact':
+                content = `
+                    <div class="contact-container">
+                        <ul>
+                            <li>Rafal Proszowski "ORANGE JACKET"</li>
+                            <li>ul. Dominikanów 32/6</li>
+                            <li>31-409 Kraków, Poland</li>
+                            <li>VAT no. PL8722295776</li>
+                            <li>Mobile: (PL) +48 604 623 373</li>
+                            <li>Email:<a href="mailto:rafal.proszowski@o-jacket.com">rafal.proszowski@o-jacket.com</a></li>
+                        </ul>
+                    </div>
+                `;
+                break;
+            default:
+                content = `
+                    <h2>Page Not Found</h2>
+                    <p>Strona nie została znaleziona.</p>
+                `;
+        }
+
+        contentPlaceholder.innerHTML = content;
+
+        // Generowanie siatki obrazków w sekcji portfolio
+        if (pageId === 'portfolio') {
+            const gridContainer = document.querySelector('.grid-container');
+            gridContainer.innerHTML = ''; // Wyczyść zawartość siatki przed dodaniem nowych elementów
+
+            // Loop to generate and append images to grid
+            for (let i = 1; i <= 9; i++) {
+                const img = document.createElement('img');
+                img.src = `image/portfolio/Slide${i}.PNG`;
+                img.alt = `Slide ${i}`;
+
+                const gridItem = document.createElement('div');
+                gridItem.classList.add('grid-item');
+                gridItem.appendChild(img);
+
+                gridContainer.appendChild(gridItem);
+            }
+        }
+
+        console.log(`Loaded page: ${pageId}`); // Dodaj logi do śledzenia załadowanej strony
+    }
+
+    // Obsługa kliknięcia w linki nawigacyjne
+    links.forEach(link => {
+        link.addEventListener('click', handleNavigation);
+    });
+
+    // Funkcja sprawdzająca czy brakuje identyfikatora podstrony w adresie URL
+    function checkHomePage() {
+        const hash = window.location.hash.substr(1); // Pobierz hash z adresu URL
+        if (!hash) {
+            // Brak identyfikatora w adresie URL, automatycznie przekieruj do strony "About"
+            window.location.href = `${window.location.href}#about`;
+            handleNavigation.call(links[0], new Event('click'));
+        }
+    }
+
+    // Sprawdź czy brakuje identyfikatora podstrony przy załadowaniu strony
+    checkHomePage();
+});
